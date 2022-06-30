@@ -33,6 +33,7 @@ while True:
   movex = math.sin(angle) 
   movey = math.cos(angle)
 
+# Speed of following circles
   x += movex * 0.2
   y += movey * 0.2
 
