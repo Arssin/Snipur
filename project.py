@@ -1,7 +1,5 @@
 import pygame , sys
 
-for x in "kepasa":
-  print(x)
 
 print(pygame.__version__)
 pygame.init()
@@ -9,11 +7,15 @@ resolution = (1280,720)
 
 screen = pygame.display.set_mode(resolution)
 
+# Circles values
 radius = 30
 x = 100
 y = 200
 
+# Clock
 clock = pygame.time.Clock()
+delta = 0.0
+
 
 
 while True:
@@ -25,7 +27,12 @@ while True:
   #Border
   screen.fill('white')
 
-  # Ticking
+  # Ticking (frames per second)
+  delta += clock.tick()/1000.0
+  while delta > 1/2.0: 
+    print("Hey")
+    delta -= 1/2.0
+
 
   # Draw
   mx,my = pygame.mouse.get_pos()
