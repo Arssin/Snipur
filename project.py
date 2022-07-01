@@ -16,6 +16,8 @@ y = 200
 clock = pygame.time.Clock()
 delta = 0.0
 
+#Max Tick Per second
+max_tps = 60.0
 
 
 while True:
@@ -24,20 +26,12 @@ while True:
     if event.type == pygame.QUIT:
       sys.exit(0)
 
-  #Border
-  screen.fill('white')
-
-  # Ticking (frames per second)
-  delta += clock.tick()/1000.0
-  while delta > 1/2.0: 
-    print("Hey")
-    delta -= 1/2.0
-
 
   # Draw
   mx,my = pygame.mouse.get_pos()
   circle1 = pygame.draw.circle(screen, "blue", (x,y), radius, 0 )
   circle2 = pygame.draw.circle(screen, "red", (mx,my), radius,5 )
+
 
  # To which point is going
   # dx = mx - x
@@ -52,5 +46,10 @@ while True:
   # x += movex * 0.2
   # y += movey * 0.2
 
+  #Border
+  screen.fill('white')
+
+
 
   pygame.display.flip()
+  clock.tick(60)
