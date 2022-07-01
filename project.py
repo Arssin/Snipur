@@ -1,3 +1,4 @@
+import random
 import pygame , sys
 
 
@@ -10,8 +11,8 @@ screen = pygame.display.set_mode(resolution)
 # Circles values
 radiuscrosshair = 25
 radiuscircles = 15
-x = 100
-y = 200
+# x = 100
+# y = 200
 
 # Clock
 clock = pygame.time.Clock()
@@ -22,6 +23,8 @@ max_tps = 60.0
 
 #Points
 points = 0
+
+obstacles = []
 
 while True:
   # Handle events
@@ -36,11 +39,15 @@ while True:
 
   # Draw
   mx,my = pygame.mouse.get_pos()
-  circle1 = pygame.draw.circle(screen, "blue", (x,y), radiuscircles, 0 )
+  circle1 = pygame.draw.circle(screen, "blue", (random.randint(0,1280),random.randint(0,720)), radiuscircles, 0 )
   circle2 = pygame.draw.circle(screen, "red", (mx,my), radiuscrosshair, 5 )
 
   if pygame.mouse.get_pressed()[0]:
     print('Mouse pressed')
+
+  def redrawWindow():
+    screen.blit()
+
 
   pygame.display.flip()
   clock.tick(60)
