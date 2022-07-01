@@ -36,6 +36,13 @@ while True:
     if event.type == pygame.QUIT:
       sys.exit(0)
 
+    if event.type == spawn_circle_event: 
+      print('Hello')
+
+    if pygame.mouse.get_pressed()[0]:
+      print('Mouse pressed')
+
+
 
   #Border
   screen.fill('white')
@@ -45,11 +52,6 @@ while True:
   mx,my = pygame.mouse.get_pos()
   circle2 = pygame.draw.circle(screen, "red", (mx,my), radiuscrosshair, 5 )
 
-  if pygame.mouse.get_pressed()[0]:
-    print('Mouse pressed')
-
-  if event.type == spawn_circle_event: 
-    print('Hello')
 
 
   pygame.display.flip()
