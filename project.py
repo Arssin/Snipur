@@ -1,14 +1,16 @@
 import pygame , sys
 
 
-print(pygame.__version__)
 pygame.init()
 resolution = (1280,720)
-
 screen = pygame.display.set_mode(resolution)
 
+# viewfinder image
+# crosshair = pygame.image.load('crosshair.png')
+
 # Circles values
-radius = 30
+radiuscrosshair = 25
+radiuscircles = 15
 x = 100
 y = 200
 
@@ -19,6 +21,8 @@ delta = 0.0
 #Max Tick Per second
 max_tps = 60.0
 
+#Points
+points = 0
 
 while True:
   # Handle events
@@ -27,10 +31,14 @@ while True:
       sys.exit(0)
 
 
+  #Border
+  screen.fill('white')
+
+
   # Draw
   mx,my = pygame.mouse.get_pos()
-  circle1 = pygame.draw.circle(screen, "blue", (x,y), radius, 0 )
-  circle2 = pygame.draw.circle(screen, "red", (mx,my), radius,5 )
+  circle1 = pygame.draw.circle(screen, "blue", (x,y), radiuscircles, 0 )
+  circle2 = pygame.draw.circle(screen, "red", (mx,my), radiuscrosshair, 5 )
 
 
  # To which point is going
@@ -45,9 +53,6 @@ while True:
 # Speed of following circles
   # x += movex * 0.2
   # y += movey * 0.2
-
-  #Border
-  screen.fill('white')
 
 
 
