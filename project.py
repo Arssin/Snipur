@@ -5,8 +5,7 @@ pygame.init()
 resolution = (1280,720)
 screen = pygame.display.set_mode(resolution)
 
-# viewfinder image
-# crosshair = pygame.image.load('crosshair.png')
+
 
 # Circles values
 radiuscrosshair = 25
@@ -40,21 +39,8 @@ while True:
   circle1 = pygame.draw.circle(screen, "blue", (x,y), radiuscircles, 0 )
   circle2 = pygame.draw.circle(screen, "red", (mx,my), radiuscrosshair, 5 )
 
-
- # To which point is going
-  # dx = mx - x
-  # dy = my - y
-
-
-  # angle = math.atan2(dx,dy)
-  # movex = math.sin(angle) 
-  # movey = math.cos(angle)
-
-# Speed of following circles
-  # x += movex * 0.2
-  # y += movey * 0.2
-
-
+  if pygame.mouse.get_pressed()[0]:
+    print('Mouse pressed')
 
   pygame.display.flip()
   clock.tick(60)
