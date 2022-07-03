@@ -5,12 +5,13 @@ pygame.init()
 
 # -------------- Settings -----------------
 
-
+pygame.mouse.set_visible(False)
 screen = pygame.display.set_mode((1280,720))
 blue = (0,0,255)
 white = (2,200,200)
 
 ms_delay = 3000
+
 
 pygame.time.set_timer(pygame.USEREVENT+2, ms_delay)
 pygame.display.set_caption('Snipur')
@@ -88,9 +89,9 @@ while not game_over:
 
   mx,my = pygame.mouse.get_pos()
   pygame.draw.circle(screen, "red", (mx,my), radiuscrosshair, 5 )
-  pygame.mouse.set_visible(False)
-
+  
   clock.tick(60)
   pygame.display.update()
+  pygame.display.flip()
 
 pygame.quit()
