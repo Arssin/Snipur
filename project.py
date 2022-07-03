@@ -1,91 +1,79 @@
 # -------------- Package + Init -----------------
-
 import random
 import pygame , sys
 pygame.init()
 
 # -------------- Settings -----------------
 
-resolution = (1280,720)
-screen = pygame.display.set_mode(resolution)
+
+screen = pygame.display.set_mode((1280,720))
+blue = (0,0,255)
+white = (2,200,200)
+
 ms_delay = 3000
-spawn_circle_event = pygame.USEREVENT + 1
+spawn_circle_event = pygame.USEREVENT+2
 pygame.time.set_timer(spawn_circle_event, ms_delay)
+pygame.display.set_caption('Snipur')
 # Circles values
 radiuscrosshair = 25
 radiuscircles = 15
+circlesX = 0
+circlesY = 30
 # Clock
-clock = pygame.time.Clock()
-delta = 0.0
 #Max Tick Per second
 max_tps = 60.0
 #Points
 points = 0
 game_over = False
-all_targets = []
 
 #COLORS
-BLUE = (000,000,255)
-
-circle1 = pygame.draw.circle(screen, "blue", (random.randint(0,1280),random.randint(0,720)), radiuscircles, 0 )
-
-# -------------- Classes -----------------
-
-class Circles:
-  def __init__(self,x,y,radius=radiuscircles, color=BLUE, thick=0):
-    self.x = x
-    self.y = y
-    self.radius = radius
-    self.color = color
-    self.thick = thick
-    self.hitbox = (x,y,radius)
-    self.count = 0
-
-  def draw(self,screen):
-    self.hitbox= ()
-    if self.count >= 8:
-      self.count = 0
-    screen.blit(circle1,self.x,self.y)
-    self.count += 1
-    pygame.draw.circle(screen, "blue", self.hitbox, self.thick) 
+BLUE = (0,0,255)
 
 
 
 
-# -------------- Functions -----------------
+#Random generator 
+obstacles = []
+number = 5
+for i in range(number):
+  ox = random.randint(0,1280)
+  oy = random.randint(0,720)
+  obstacles.append(pygame.Rect(ox,oy,25,60))
 
+
+# -------------- GameLoop -----------------
+clock = pygame.time.Clock()
+game_over = False
 
 while not game_over:
-
-  # for e in all_targets:
-  #   e.draw(screen)
 
   # Handle events
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       sys.exit(0)
 
-    if event.type == spawn_circle_event: 
-      print('Hello')
-
-
-
 
     if pygame.mouse.get_pressed()[0]:
       print('Mouse pressed')
 
-  for e in all_targets:
-    e.draw(screen)
+    if event.type == pygame.USEREVENT+2:
+      print('bonjour')
 
-  #Border
+
+
+  for obstacle in obstacles:
+      pygame.draw.rect(screen, white, obstacle)
+
+
   screen.fill('white')
 
+  #Border
 
-  # Draw
+  # Draw circle and mouse position
   mx,my = pygame.mouse.get_pos()
   circle2 = pygame.draw.circle(screen, "red", (mx,my), radiuscrosshair, 5 )
 
-
-
-  pygame.display.flip()
   clock.tick(60)
+  pygame.display.update()
+
+pygame.quit()
