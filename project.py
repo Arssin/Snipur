@@ -54,21 +54,7 @@ oy = random.randint(0,720)
 
 for i in range(number):
   obstacles.append(Circle())
-# for count in range(number):
-#   count += 1
-#   print(count)
 
-
-
-# for obstacle in obstacles:
-#   if count <= 0:
-#     count += 1
-    # obstacles.append(pygame.draw.circle(screen, blue, (ox,oy), radiuscircles, 0 ))
-  # pygame.draw.circle(screen, blue, (ox,oy), radiuscircles, 0 )
-# for i in range(number):
-#   ox = random.randint(0,1280)
-#   oy = random.randint(0,720)
-#   obstacles.append(pygame.Rect(ox,oy,25,60))
 
 
 # -------------- GameLoop -----------------
@@ -89,12 +75,6 @@ while not game_over:
       print('Mouse pressed')
 
 
-  # for obstacle in obstacles:
-  #     pygame.draw.circle(screen, blue, (ox,oy), radiuscircles, 0 )
-
-
-
-
   #Border
   screen.fill('white')
 
@@ -103,10 +83,11 @@ while not game_over:
   pygame.draw.circle(screen, "red", (mx,my), radiuscrosshair, 5 )
 
   for circle in obstacles:
-    circle.draw()
+    if event.type == pygame.USEREVENT+2:
+      print('essa')
+      circle.draw()
 
   clock.tick(60)
-
   pygame.display.update()
 
 pygame.quit()
