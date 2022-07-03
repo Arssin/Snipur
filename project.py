@@ -27,18 +27,20 @@ points = 0
 game_over = False
 
 #COLORS
-BLUE = (0,0,255)
+blue = (0,0,255)
 
-
-
+hit = 0
+count = 0
 
 #Random generator 
 obstacles = []
 number = 5
-for i in range(number):
-  ox = random.randint(0,1280)
-  oy = random.randint(0,720)
-  obstacles.append(pygame.Rect(ox,oy,25,60))
+ox = random.randint(0,1280)
+oy = random.randint(0,720)
+# for i in range(number):
+#   ox = random.randint(0,1280)
+#   oy = random.randint(0,720)
+#   obstacles.append(pygame.Rect(ox,oy,25,60))
 
 
 # -------------- GameLoop -----------------
@@ -57,21 +59,22 @@ while not game_over:
       print('Mouse pressed')
 
     if event.type == pygame.USEREVENT+2:
+      obstacles.append(pygame.Rect(ox,oy,25,60))
       print('bonjour')
 
-
+  screen.fill('white')
 
   for obstacle in obstacles:
-      pygame.draw.rect(screen, white, obstacle)
+      pygame.draw.circle(screen, blue, (ox,oy), radiuscircles, 0 )
 
 
-  screen.fill('white')
+
 
   #Border
 
   # Draw circle and mouse position
   mx,my = pygame.mouse.get_pos()
-  circle2 = pygame.draw.circle(screen, "red", (mx,my), radiuscrosshair, 5 )
+  pygame.draw.circle(screen, "red", (mx,my), radiuscrosshair, 5 )
 
   clock.tick(60)
   pygame.display.update()
