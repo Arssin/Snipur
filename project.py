@@ -79,13 +79,16 @@ while not game_over:
   screen.fill('white')
 
   # Draw circle and mouse position
-  mx,my = pygame.mouse.get_pos()
-  pygame.draw.circle(screen, "red", (mx,my), radiuscrosshair, 5 )
+
 
   for circle in obstacles:
     if event.type == pygame.USEREVENT+2:
       print('essa')
       circle.draw()
+
+  mx,my = pygame.mouse.get_pos()
+  pygame.draw.circle(screen, "red", (mx,my), radiuscrosshair, 5 )
+  pygame.mouse.set_visible(False)
 
   clock.tick(60)
   pygame.display.update()
