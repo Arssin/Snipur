@@ -16,6 +16,7 @@ clock = pygame.time.Clock()
 margin = 100
 lowerMargin = 100
 score = 0
+timeLeft = 0
 
 font = pygame.font.SysFont("Arial", 25)
 
@@ -86,10 +87,13 @@ def pointer():
 
 def upperBar():
     pygame.draw.rect(screen, purple, (0,0, 300, 60))
+    pygame.draw.rect(screen, purple, (980,0, 300, 60))
 
 def scoreShow():
     scoreText = font.render("Circles shooted : " + str(score), True, white)
     screen.blit(scoreText, (30, 15))
+    timeLimit = font.render("Time left : " + str(timeLeft), True, white)
+    screen.blit(timeLimit, (1050, 15))
 
 def close():
     pygame.quit()
