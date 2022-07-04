@@ -87,11 +87,11 @@ def pointer():
   pygame.draw.circle(screen, color,  (pos[0] - r/2, pos[1] - r/2), radiuscrosshair, 5 )
 
 def upperScore():
-    pygame.draw.rect(screen, purple, (0, height - lowerMargin, width, lowerMargin))
+    pygame.draw.rect(screen, purple, (0,0, 300, 60))
 
 def scoreShow():
-    scoreText = font.render("Balloons Bursted : " + str(score), True, white)
-    screen.blit(scoreText, (150, height - lowerMargin + 50))
+    scoreText = font.render("Circles shooted : " + str(score), True, white)
+    screen.blit(scoreText, (30, 15))
 
 def close():
     pygame.quit()
