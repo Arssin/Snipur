@@ -12,15 +12,18 @@ screen = pygame.display.set_mode((width,height))
 pygame.display.set_caption('Snipur')
 pygame.mouse.set_visible(False)
 clock = pygame.time.Clock()
+pygame.time.set_timer(pygame.USEREVENT+1, 1000)
+
 
 margin = 100
 lowerMargin = 100
 score = 0
-timeLeft = 0
+timeLeft = 30
+
+
 
 font = pygame.font.SysFont("Consolas", 23)
 
-pygame.time.set_timer(pygame.USEREVENT, 3000)
 
 
 #COLORS
@@ -79,8 +82,6 @@ def hitCircle(x,y,pos):
 
 def pointer():
   pos = pygame.mouse.get_pos()
-  r = 25
-  l = 20
   color = blue
   for i in range(noCircles):
     if hitCircle(circles[i].x  , circles[i].y, pos ):
@@ -94,8 +95,8 @@ def upperBar():
 def scoreShow():
     scoreText = font.render("Circles shooted : " + str(score), True, white)
     screen.blit(scoreText, (30, 15))
-    timeLimit = font.render("Time left : " + str(timeLeft), True, white)
-    screen.blit(timeLimit, (1050, 15))
+    timerText = font.render("Time left: " + str(timeLeft), True, (white))
+    screen.blit(timerText, (1050, 15))
 
 def close():
     pygame.quit()
@@ -103,7 +104,9 @@ def close():
 
 def game():
     global score
+    global timeLeft
     loop = True
+    
 
     while loop:
         for event in pygame.event.get():
@@ -119,8 +122,13 @@ def game():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 for i in range(noCircles):
                     circles[i].hit()
+            
+            if event.type == pygame.USEREVENT+1:
+              timeLeft -= 1
+
 
         screen.fill(white)
+
         
         for i in range(noCircles):
             circles[i].draw()
