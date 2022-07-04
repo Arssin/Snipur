@@ -18,7 +18,9 @@ lowerMargin = 100
 score = 0
 timeLeft = 0
 
-font = pygame.font.SysFont("Arial", 25)
+font = pygame.font.SysFont("Consolas", 23)
+
+pygame.time.set_timer(pygame.USEREVENT, 3000)
 
 
 #COLORS
