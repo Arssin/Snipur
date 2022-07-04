@@ -13,6 +13,7 @@ white = (2,200,200)
 ms_delay = 3000
 
 
+
 pygame.time.set_timer(pygame.USEREVENT+2, ms_delay)
 pygame.display.set_caption('Snipur')
 # Circles values
@@ -29,6 +30,10 @@ game_over = False
 
 #COLORS
 blue = (0,0,255)
+red = (255,0,0)
+white = (230, 230, 230)
+lightGreen = (25, 111, 61)
+purple = (155, 89, 182)
 
 hit = 0
 count = 0
@@ -41,6 +46,7 @@ class Circle:
          self.pos = [random.randint(0, 1280), random.randint(0, 720)]
          self.color = blue
          self.radius = 15
+         self.color = random.choice([blue,red,purple,lightGreen,])
 
     def draw(self):
          pygame.draw.circle(screen, self.color, (self.pos[0], self.pos[1]), self.radius)
