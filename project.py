@@ -29,10 +29,8 @@ purple = (155, 89, 182)
 
 
 # Circles values
-radiuscrosshair = 25
-radiuscircles = 15
-circlesX = 0
-circlesY = 30
+radiuscrosshair = 15
+radiuscircles = 25
 
 max_tps = 60.0
 game_over = False
@@ -42,24 +40,24 @@ class Circle:
     def __init__(self):
          self.x = random.randint(0,1280)
          self.y = random.randint(0,720)
-         self.radius = 15
+         self.radius = radiuscircles
          self.color = random.choice([blue,red,purple,lightGreen,])
 
     def draw(self):
-          pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
+          pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius, 5)
 
     def hit(self):
           global score
           pos = pygame.mouse.get_pos()
 
-          # if hitCircle(self.x, self.y):
-          #   score += 1
-          #   self.reset()
+          if hitCircle(self.x, self.y,pos):
+            score += 1
+            self.reset()
 
     def reset(self): 
          self.x = random.randint(0,1280)
          self.y = random.randint(0,720)
-         self.radius = 15
+         self.radius = radiuscircles
          self.color = random.choice([blue,red,purple,lightGreen,])
     
     
@@ -70,21 +68,21 @@ for i in range(noCircles):
     obj = Circle()
     circles.append(obj)
 
-# def hitCircle(x,y,a,b,pos):
-#     if (x < pos[0] < x + a) and (y < pos[1] < y + b):
-#         return True
-#     else:
-#         return False
+def hitCircle(x,y,pos):
+    if (x - radiuscircles/2 <= pos[0] <= x + radiuscircles/2) and (y - radiuscircles/2 <= pos[1] <= y + radiuscircles/2): 
+        return True
+    else:
+        return False
 
 def pointer():
   pos = pygame.mouse.get_pos()
   r = 25
   l = 20
-  color = lightGreen
-  # for i in range(noCircles):
-  #   if hitCircle(circles[i].x, circles[i].y, circles[i].a, circles[i].b, pos):
-  #     color = red
-  pygame.draw.circle(screen, color,  (pos[0] - r/2, pos[1] - r/2), radiuscrosshair, 5 )
+  color = blue
+  for i in range(noCircles):
+    if hitCircle(circles[i].x  , circles[i].y, pos ):
+      color = red
+  pygame.draw.circle(screen, color,  (pos[0] , pos[1]), radiuscrosshair, 0 )
 
 def upperScore():
     pygame.draw.rect(screen, purple, (0,0, 300, 60))
