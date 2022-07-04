@@ -93,10 +93,11 @@ def upperBar():
     pygame.draw.rect(screen, purple, (980,0, 300, 60))
 
 def scoreShow():
-    scoreText = font.render("Circles shooted : " + str(score), True, white)
+    scoreText = font.render("Points : " + str(score), True, white)
     screen.blit(scoreText, (30, 15))
     timerText = font.render("Time left: " + str(timeLeft), True, (white))
     screen.blit(timerText, (1050, 15))
+  
 
 def close():
     pygame.quit()
@@ -125,7 +126,8 @@ def game():
             
             if event.type == pygame.USEREVENT+1:
               timeLeft -= 1
-
+              if timeLeft <= 0:
+                pygame.time.set_timer(pygame.USEREVENT+1, 0)
 
         screen.fill(white)
 
