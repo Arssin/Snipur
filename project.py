@@ -38,8 +38,8 @@ game_over = False
 # -------------- Classes  -----------------
 class Circle:
     def __init__(self):
-         self.x = random.randint(0,1280)
-         self.y = random.randint(0,720)
+         self.x = random.randint(30,1250)
+         self.y = random.randint(100,690)
          self.radius = radiuscircles
          self.color = random.choice([blue,red,purple,lightGreen,])
 
@@ -55,14 +55,14 @@ class Circle:
             self.reset()
 
     def reset(self): 
-         self.x = random.randint(0,1280)
-         self.y = random.randint(0,720)
+         self.x = random.randint(30,1250)
+         self.y = random.randint(100,690)
          self.radius = radiuscircles
          self.color = random.choice([blue,red,purple,lightGreen,])
     
     
 circles = []
-noCircles = 10
+noCircles = 1
 
 for i in range(noCircles):
     obj = Circle()
@@ -84,7 +84,7 @@ def pointer():
       color = red
   pygame.draw.circle(screen, color,  (pos[0] , pos[1]), radiuscrosshair, 0 )
 
-def upperScore():
+def upperBar():
     pygame.draw.rect(screen, purple, (0,0, 300, 60))
 
 def scoreShow():
@@ -122,7 +122,7 @@ def game():
         pointer()
         
         
-        upperScore()
+        upperBar()
         scoreShow()
         pygame.display.update()
         clock.tick(60)
