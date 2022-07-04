@@ -14,9 +14,6 @@ pygame.mouse.set_visible(False)
 clock = pygame.time.Clock()
 pygame.time.set_timer(pygame.USEREVENT+1, 1000)
 
-
-margin = 100
-lowerMargin = 100
 score = 0
 timeLeft = 30
 
@@ -39,7 +36,6 @@ radiuscrosshair = 15
 radiuscircles = 25
 
 max_tps = 60.0
-game_over = False
 
 # -------------- Classes  -----------------
 class Circle:
@@ -98,6 +94,10 @@ def scoreShow():
     timerText = font.render("Time left: " + str(timeLeft), True, (white))
     screen.blit(timerText, (1050, 15))
   
+def scoredPoints():
+    pygame.draw.rect(screen, red, (0,0, 1280, 720))
+    scoredPoints = font.render("You got : " + str(score) + "points!", True, white)
+    screen.blit(scoredPoints, (0, 0))
 
 def close():
     pygame.quit()
@@ -128,6 +128,7 @@ def game():
               timeLeft -= 1
               if timeLeft <= 0:
                 pygame.time.set_timer(pygame.USEREVENT+1, 0)
+                
 
         screen.fill(white)
 
